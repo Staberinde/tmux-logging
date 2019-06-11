@@ -41,7 +41,7 @@ is_logging() {
 }
 # starts logging
 start_pipe_pane_if_not_started() {
-	if ! is_logging; then
+	if ! is_logging && [[ -z ${VIMRUNTIME} ]]; then
 		set_logging_variable "logging"
 		start_pipe_pane
 	fi

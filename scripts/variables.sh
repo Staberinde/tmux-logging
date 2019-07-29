@@ -20,6 +20,10 @@ clear_history_key=${clear_history_key:-$default_clear_history_key}
 
 # General options
 filename_suffix="#{session_name}-#{window_index}-#{pane_index}-%Y%m%dT%H%M%S.log"
+log_encoding=$(tmux show-option -gqv "@tmux-logging-encoding")
+if [[ $log_encoding  == 'gzip' ]]; then
+    filename_suffix="$filename_suffix.gz"
+fi
 
 # Logging options
 default_logging_path="$HOME"
